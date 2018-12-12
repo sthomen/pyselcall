@@ -1,5 +1,5 @@
-from durations import Durations
-from tones import Tones
+from .durations import Durations
+from .tones import Tones
 
 class Code(object):
 	def __init__(self, code, duration=None, codec=None):

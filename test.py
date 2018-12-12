@@ -1,5 +1,4 @@
-from code import Code
-from durations import Durations
+from selcall import Code, Durations
 
 code = Code((7, 0, 0, 5, 0), Durations.ERICSSON)
 
