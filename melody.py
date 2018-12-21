@@ -29,7 +29,7 @@ class Melody(object):
 		with wave.open(fn, 'wb') as fp:
 			fp.setnchannels(1)
 			fp.setsampwidth(self.bits//8)
-			fp.setframerate(self.rate//2)
+			fp.setframerate(self.rate)
 			fp.setcomptype('NONE', 'Not Compressed')
 
 			for frame in self:
