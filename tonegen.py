@@ -9,15 +9,15 @@ class Tone(object):
 
 class Square(Tone):
 	def __iter__(self):
-		i = 0
+		switch = (self.rate / self.frequency) / 2
 		value = 0
-		switch = self.rate / self.frequency
+		x = switch / 2
 
 		while True:
-			if floor(i % switch) == 0:	# XXX aliasing!
+			if floor(x % switch) == 0:
 				value = self.full if value == 0 else 0
 
-			i += 1
+			x += 1
 
 			yield value
 
@@ -47,13 +47,14 @@ class Triangle(Tone):
 
 class Sine(Tone):
 	def __iter__(self):
-		x = 0
+		mid = self.full / 2
 
-		mid = self.full/2
+		x = -(self.rate / self.frequency) / 4
 
 		while True:
-			value = sin(x*(2*pi)/(self.rate / self.frequency))*mid+mid
+			value = sin(x * (2 * pi) / (self.rate / self.frequency)) * mid + mid
 
 			x += 1
 
 			yield floor(value)
+
