@@ -4,12 +4,15 @@ from .tone import Tone
 
 class Sine(Tone):
 	def __iter__(self):
-		mid = self.full / 2
+		x = 0 if self.signed else -(self.rate / self.frequency) / 4
 
-		x = -(self.rate / self.frequency) / 4
+		mid = (self.full / 2)
 
 		while True:
-			value = sin(x * (2 * pi) / (self.rate / self.frequency)) * mid + mid
+			value = sin(x * (2 * pi) / (self.rate / self.frequency)) * mid
+
+			if not self.signed:
+				value += mid
 
 			x += 1
 
