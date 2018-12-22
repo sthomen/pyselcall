@@ -10,7 +10,7 @@ class Square(Tone):
 
 		while True:
 			if floor(x % switch) == 0:
-				value = self.full if value == 0 else 0
+				value = self.high if value == self.low else self.low
 
 			x += 1
 
