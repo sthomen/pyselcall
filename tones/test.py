@@ -8,12 +8,10 @@ class BaseTest(unittest.TestCase):
 		self.samplecount = int(self.rate / self.frequency)
 
 	def assertLow(self, value, minimum, tolerance=0.1):
-		if not minimum <= value <= (minimum - (minimum * tolerance)):
-			raise AssertionError("Low value {} is not within a minimum tolerance of {:%}".format(value, tolerance))
+		assert minimum <= value <= (minimum - (minimum * tolerance)), "Low value {} is not within a minimum tolerance of {:%}".format(value, tolerance)
 
 	def assertHigh(self, value, maximum, tolerance=0.1):
-		if not ((maximum - (maximum * tolerance)) <= value <= maximum):
-			raise AssertionError("High value {} is not within a maximum tolerance of {:%}".format(value, tolerance))
+		assert (maximum - (maximum * tolerance)) <= value <= maximum, "High value {} is not within a maximum tolerance of {:%}".format(value, tolerance)
 
 	def _test_waveform_range(self, wave):
 		iterator = iter(wave)
