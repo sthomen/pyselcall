@@ -3,6 +3,10 @@ from math import sin, pi
 from .tone import Tone
 
 class Sine(Tone):
+	"""
+	This class continually produces a sine wave. It offsets the sine wave as to
+	always start at 0 to reduce pops in the output.
+	"""
 	def __iter__(self):
 		x = 0 if self.signed else -(self.rate / self.frequency) / 4
 

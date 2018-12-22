@@ -1,6 +1,11 @@
 import unittest
 from . import *
 
+"""
+Tests for the tone generators, these only test that the generators provide high
+and low values within 10% of the maximum/minimum of the waves during a cycle.
+"""
+
 class BaseTest(unittest.TestCase):
 	def setUp(self):
 		self.frequency = 1000

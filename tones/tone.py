@@ -1,4 +1,7 @@
 class Tone(object):
+	"""
+	Tone superclass, mostly a shared initialiser for the tone generators
+	"""
 	def __init__(self, frequency, rate=44100, bits=16, signed=False):
 		self.frequency=frequency
 		self.rate = rate

@@ -1,4 +1,7 @@
 class Tones(object):
+	"""
+	Frequency lookup class for various standards used by SelCall Squelch codes
+	"""
 	# Frequencies in Hz for the tone sets 0x0 - 0xF
 	CCIR     = (1981, 1124, 1197, 1275, 1358, 1446, 1540, 1640, 1747, 1860, 2400,  930, 2247,  991, 2110, 1055)
 	EEA      = (1981, 1124, 1197, 1275, 1358, 1446, 1540, 1640, 1747, 1860, 1055,  930, 2400,  991, 2110, 2247)
