@@ -5,11 +5,8 @@ from tones import Tone, Sine
 
 class Melody(object):
 	def __init__(self, code, waveform=Sine, rate=44100, bits=16):
-		if not isinstance(code, Code):
-			raise ValueError("The code parameter must be a selcall.Code derived generator")
-
 		if not issubclass(waveform, Tone):
-			raise ValueError("The waveform parameter must be a tones.Tone derived generator")
+			raise ValueError("The waveform parameter must be a a class derived from tones.Tone")
 
 		self.code = code
 		self.waveform = waveform
