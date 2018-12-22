@@ -18,7 +18,7 @@ class Melody(object):
 
 	def __iter__(self):
 		for frequency, duration in self.code:
-			waveform = iter(self.waveform(frequency, self.rate, self.bits))
+			waveform = iter(self.waveform(frequency, self.rate, self.bits, signed=True))
 
 			frames = int((duration / 1000) * self.rate)
 
@@ -33,7 +33,6 @@ class Melody(object):
 			fp.setcomptype('NONE', 'Not Compressed')
 
 			for frame in self:
-				frame-=(1 << (self.bits-1))
 				fp.writeframesraw(frame.to_bytes(self.bits//8, 'little', signed=True))
 
 			fp.close()
