@@ -1,6 +1,5 @@
 import wave
 
-from selcall import Code
 from tones import Tone, Sine
 
 class Melody(object):
