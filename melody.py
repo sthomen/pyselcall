@@ -27,12 +27,13 @@ class Melody(object):
 		self.waveform = waveform
 		self.rate = rate
 		self.bits = bits
+		self.signed = signed
 
 	def __iter__(self):
 		"""
 		This method allows you to run a Melody object as a generator of audio
 		samples, it will yield values as samples from the selcted waveform in
-		the frequency and duration specified by the "code" until the latter is
+		the frequency and duration specified by the "code" until it is
 		exhausted.
 		"""
 		for frequency, duration in self.code:
