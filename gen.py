@@ -1,6 +1,10 @@
+import sys
+
 from selcall import Code, Durations
 from melody import Melody
 
-melody = Melody(Code((7,0,0,5,0), duration=Durations.ERICSSON))
+args=tuple(int(a) for a in sys.argv[1:])
+
+melody = Melody(Code(args, duration=Durations.ERICSSON))
 
 melody.wave('output.wav')
