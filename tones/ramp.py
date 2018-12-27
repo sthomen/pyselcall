@@ -11,4 +11,4 @@ class Ramp(Tone):
 
 		while True:
 			yield value
-			value = value + step if value < self.high else self.low
+			value = value + step if value < self.high-step else self.low

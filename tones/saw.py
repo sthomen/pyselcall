@@ -11,4 +11,4 @@ class Saw(Tone):
 
 		while True:
 			yield value
-			value = value-step if value > self.low else self.high
+			value = value-step if value > self.low+step else self.high
