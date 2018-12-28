@@ -2,6 +2,12 @@ import wave
 
 from tones import Tone, Sine
 
+try:
+	import pyaudio
+	playback = True
+except:
+	playback = False
+
 class Melody(object):
 	"""
 	Melody generator for a given waveform, sample rate and bit depth.
@@ -60,3 +66,32 @@ class Melody(object):
 				fp.writeframesraw(frame.to_bytes(self.bits//8, 'little', signed=self.signed))
 
 			fp.close()
+
+	def play(self, attennuation=8):
+		"""
+		This runs the generator in __iter__ and plays it back using pyaudio (if available)
+		Note that this method does not do streaming, because pyaudio expects its input to be
+		finite (it runs len()).
+		"""
+
+		if not playback:
+			quit("Can't play back, no pyaudio found")
+
+		data=bytes()
+		for frame in self:
+			frame//=attennuation
+			data+=frame.to_bytes(self.bits//8, 'little', signed=self.signed)
+
+		pa = pyaudio.PyAudio()
+
+		stream = pa.open(format=pa.get_format_from_width(self.bits//8, self.signed),
+			channels=1,
+			rate=self.rate,
+			output=True)
+
+		stream.write(data)
+
+		stream.stop_stream()
+		stream.close()
+
+		pa.terminate()
