@@ -1,6 +1,6 @@
 import wave
 
-from tones import Tone, Sine
+from .tones import Tone, Sine
 
 try:
 	import pyaudio
@@ -50,7 +50,7 @@ class Melody(object):
 			for _ in range(0,frames):
 				yield int(next(waveform))
 
-	def wave(self, fn):
+	def wave(self, fn, attennuation=0):
 		"""
 		This runs the generator in __iter__ and produces a wav file
 		"""
@@ -63,11 +63,12 @@ class Melody(object):
 			fp.setcomptype('NONE', 'Not Compressed')
 
 			for frame in self:
+				frame//=attennuation
 				fp.writeframesraw(frame.to_bytes(self.bits//8, 'little', signed=self.signed))
 
 			fp.close()
 
-	def play(self, attennuation=8):
+	def play(self, attennuation=0):
 		"""
 		This runs the generator in __iter__ and plays it back using pyaudio (if available)
 		Note that this method does not do streaming, because pyaudio expects its input to be
