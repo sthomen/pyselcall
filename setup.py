@@ -4,10 +4,15 @@ setup(
 	name = 'pyselcall',
 	version = '1.0',
 	packages = find_packages(),
+
 	entry_points = {
 		'console_scripts': [
 			'pyselcall = pyselcall.scripts.pyselcall:run'
 		]
+	},
+
+	extras_require = {
+		'Direct audio playback': [ 'pyaudio' ]
 	},
 
 	author = 'Staffan Thomen',
