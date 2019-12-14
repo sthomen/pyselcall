@@ -22,7 +22,7 @@ class Tones(object):
 	def __iter__(self):
 		last=-1
 		for number in self.code:
-			if number not in range(0x0, 0xf):
+			if number not in range(0x0, 0x10):
 				raise ValueError("Invalid code, individual values must be 0x0 - 0xF")
 
 			if last == number:
